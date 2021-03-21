@@ -23,13 +23,13 @@ app.post('/',  (req, res) => {
                 errors: err
             });
         }
-        if ( !body.password ) {
+        if ( !body.pass ) {
             return res.status(400).json({
                 ok: false,
                 mensaje: 'Credenciales incorrectas, sin pw'
             });
         }
-        if (!bcrypt.compareSync(body.password, userDB.password)) {
+        if (!bcrypt.compareSync(body.pass, userDB.pass)) {
             return res.status(400).json({
                 ok: false,
                 mensaje: 'Credenciales incorrectas, pw erronea',

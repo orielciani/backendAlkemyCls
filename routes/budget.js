@@ -12,7 +12,7 @@ app.get('/', [mdAuth.verifyToken], (req, res) => {
   .or([{ 'user': user }])
   .limit(10)
   .sort({"createdDate": -1})
-  .exec((err, budgets) => {
+  .exec((err, budget) => {
     if ( err ) {
       return res.status(400).json({
         ok: false,
@@ -24,7 +24,7 @@ app.get('/', [mdAuth.verifyToken], (req, res) => {
     res.status(200).json({
       ok: true,
       message: 'Hola =) estas en Presupuesto',
-      budgets: budgets,
+      budget: budget,
     })
   })
 });
@@ -34,7 +34,7 @@ app.get('/class', [mdAuth.verifyToken], (req, res) => {
   let categories = [];
   Budget.find({}, 'type class',)
   .or([{ 'user': user }])
-  .exec((err, budgets) => {
+  .exec((err, budget) => {
     if ( err ) {
       return res.status(400).json({
         ok: false,
@@ -45,7 +45,7 @@ app.get('/class', [mdAuth.verifyToken], (req, res) => {
     res.status(200).json({
       ok: true,
       message: 'Hola =) estas en Presupuesto',
-      class: budgets,
+      class: budget,
     })
   })
 });

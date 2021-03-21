@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 app.post('/create', (req, res) => {
     const body = req.body;
 
-    if (!body.user || !body.email || !body.password || body.password === null) {
+    if (!body.user || !body.email || !body.pass || body.pass === null) {
         return res.status(400).json({
         ok: false,
         message: 'Debe llenar todo el formulario para registrarse'
@@ -34,7 +34,7 @@ app.post('/create', (req, res) => {
       const user = new User({
         user: body.user,
         email: body.email,
-        password: bcrypt.hashSync(body.password, 10),
+        pass: bcrypt.hashSync(body.pass, 10),
     })
 
       user.save( (err, saveUser) => {
